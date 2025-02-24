@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://do4jrpcaxlew8"]
+
+[ext_resource type="PackedScene" uid="uid://dk8uljjp4kf1y" path="res://Scene/Arena/arena.tscn" id="1_83mys"]
+[ext_resource type="PackedScene" uid="uid://dtrahtj1vsmq5" path="res://Scene/Player/player.tscn" id="1_e1tfq"]
+
+[node name="MainScene" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="Arena" parent="." instance=ExtResource("1_83mys")]
+scale = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("1_e1tfq")]
+position = Vector2(1184, 644)
