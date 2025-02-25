@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd0rgo8sqo8if"]
+[gd_scene load_steps=4 format=3 uid="uid://cd0rgo8sqo8if"]
 
 [ext_resource type="Script" path="res://Scene/Components/Guns/gun_component.gd" id="1_kd6t2"]
+[ext_resource type="PackedScene" uid="uid://bcy5h55ukjhrw" path="res://Scene/Components/Guns/Shotgun/shotgun.tscn" id="2_6nfg7"]
+[ext_resource type="PackedScene" uid="uid://dv7jr1g6he3jr" path="res://Scene/Components/Guns/Rocket Launcher/rocket_launcher.tscn" id="3_oinv1"]
 
 [node name="GunComponent" type="Node2D"]
 script = ExtResource("1_kd6t2")
+gun_types = Array[PackedScene]([ExtResource("2_6nfg7"), ExtResource("3_oinv1")])
+
+[node name="ShootCooldownTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Gun" type="Node2D" parent="."]
