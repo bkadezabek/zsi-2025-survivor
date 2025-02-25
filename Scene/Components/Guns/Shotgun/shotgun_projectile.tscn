@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfr1trkllnsj8"]
+
+[ext_resource type="Script" path="res://Scene/Components/Guns/Shotgun/shotgun_projectile.gd" id="1_ndv15"]
+[ext_resource type="Texture2D" uid="uid://dtmrxlcvwk0of" path="res://icon.svg" id="2_f0tne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nhlj"]
+
+[node name="ShotgunProjectile" type="Area2D"]
+script = ExtResource("1_ndv15")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3nhlj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_f0tne")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

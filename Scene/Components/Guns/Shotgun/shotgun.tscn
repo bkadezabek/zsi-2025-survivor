@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcy5h55ukjhrw"]
+
+[ext_resource type="Script" path="res://Scene/Components/Guns/Shotgun/shotgun.gd" id="1_82xs2"]
+[ext_resource type="Texture2D" uid="uid://b2vg4amtjm48l" path="res://Assets/Guns/winchester.png" id="2_dp8md"]
+[ext_resource type="PackedScene" uid="uid://cfr1trkllnsj8" path="res://Scene/Components/Guns/Shotgun/shotgun_projectile.tscn" id="2_ltaeo"]
+
+[node name="Shotgun" type="Node2D"]
+script = ExtResource("1_82xs2")
+projectile_scene = ExtResource("2_ltaeo")
+
+[node name="ShootingFXSprite" type="AnimatedSprite2D" parent="."]
+
+[node name="GunSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_dp8md")
+
+[node name="Muzzle" type="Marker2D" parent="."]
