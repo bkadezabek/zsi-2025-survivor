@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://b0v5ron7kawd1"]
+[gd_scene load_steps=21 format=3 uid="uid://b0v5ron7kawd1"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/RoboEnemy/robo_enemy.gd" id="1_ehxxn"]
 [ext_resource type="PackedScene" uid="uid://c5deyq4a14be5" path="res://Scenes/Components/HealthComponent/health_component.tscn" id="2_2f8qi"]
+[ext_resource type="PackedScene" uid="uid://c8qjel1262eqh" path="res://Scenes/Enemy/EnemyProjectile/enemy_projectile.tscn" id="2_pbkyr"]
 [ext_resource type="PackedScene" uid="uid://clkiuqx8ukprm" path="res://Scenes/Components/VelocityComponent/velocity_component.tscn" id="3_p8pxr"]
 [ext_resource type="Texture2D" uid="uid://bl23s5qcove37" path="res://Assets/enemies x1.png" id="4_xuo8y"]
 
@@ -118,6 +119,9 @@ collision_mask = 6
 script = ExtResource("1_ehxxn")
 health_component = NodePath("HealthComponent")
 velocity_component = NodePath("VelocityComponent")
+projectile_scene = ExtResource("2_pbkyr")
+min_shoot_interval = 1.0
+max_shoot_interval = 5.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_2f8qi")]
 max_health = 40

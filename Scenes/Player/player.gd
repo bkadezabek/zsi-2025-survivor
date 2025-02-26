@@ -3,10 +3,15 @@ extends CharacterBody2D
 @onready var camera: Camera2D = $Camera2D
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
+@onready var health_component: HealthComponent = $HealthComponent
+
 @export var camera_offset_factor: float = 0.6
 @export var max_camera_offset: float = 33.0
 
 var speed: float = 200.0
+
+func _ready() -> void: 
+	PlayerManager.set_player(self)
 
 func _process(delta):
 	var direction = Vector2.ZERO
@@ -47,3 +52,12 @@ func flip_sprite_on_mouse_position(mouse_position: Vector2) -> void:
 		animated_sprite_2d.flip_h = true
 	else:
 		animated_sprite_2d.flip_h = false
+
+
+# 4. Dan
+func _on_health_component_death():
+	print("Player has died!")
+	queue_free()
+
+func take_damage(amount: int) -> void:
+	health_component.take_damage(amount)

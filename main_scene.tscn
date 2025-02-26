@@ -1,25 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://do4jrpcaxlew8"]
+[gd_scene load_steps=5 format=3 uid="uid://do4jrpcaxlew8"]
 
 [ext_resource type="PackedScene" uid="uid://dk8uljjp4kf1y" path="res://Scenes/Arena/arena.tscn" id="1_83mys"]
 [ext_resource type="PackedScene" uid="uid://dtrahtj1vsmq5" path="res://Scenes/Player/player.tscn" id="1_e1tfq"]
-[ext_resource type="PackedScene" uid="uid://b0v5ron7kawd1" path="res://Scenes/Enemy/RoboEnemy/robo_enemy.tscn" id="3_wmht8"]
-[ext_resource type="PackedScene" uid="uid://wjl8j6rhj78g" path="res://Scenes/Enemy/FlyingRoboEnemy/flying_robo_enemy.tscn" id="4_u5iwv"]
-[ext_resource type="PackedScene" uid="uid://bad254j8ejf5d" path="res://Scenes/Enemy/TurretRoboEnemy/turret_robo_enemy.tscn" id="5_u1r42"]
+[ext_resource type="PackedScene" uid="uid://diiqewx8bak2h" path="res://Scenes/Enemy/EnemyManager/enemy_manager.tscn" id="3_8w1ks"]
+
+[sub_resource type="Curve" id="Curve_xf7xj"]
+_data = [Vector2(0, 0.803687), 0.0, -0.118396, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="MainScene" type="Node2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="EnemyManager" parent="." instance=ExtResource("3_8w1ks")]
+spawn_curve = SubResource("Curve_xf7xj")
+spawn_area = Rect2(2.08165e-12, 2.08165e-12, 2200, 1200)
 
 [node name="Arena" parent="." instance=ExtResource("1_83mys")]
 scale = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("1_e1tfq")]
 position = Vector2(1184, 644)
-
-[node name="RoboEnemy" parent="." instance=ExtResource("3_wmht8")]
-position = Vector2(200, 200)
-
-[node name="FlyingRoboEnemy" parent="." instance=ExtResource("4_u5iwv")]
-position = Vector2(331, 655)
-
-[node name="TurretRoboEnemy" parent="." instance=ExtResource("5_u1r42")]
-position = Vector2(781, 275)
+camera_offset_factor = null
+max_camera_offset = null

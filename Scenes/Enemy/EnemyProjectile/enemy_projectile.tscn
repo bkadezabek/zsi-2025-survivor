@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8qjel1262eqh"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/EnemyProjectile/enemy_projectile.gd" id="1_pdsyp"]
+[ext_resource type="Texture2D" uid="uid://dc50e3txsnvux" path="res://Assets/projectiles x1.png" id="2_d7ouw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6qai8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7xrm"]
+atlas = ExtResource("2_d7ouw")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8214v"]
+atlas = ExtResource("2_d7ouw")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gufec"]
+atlas = ExtResource("2_d7ouw")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5d6gb"]
+atlas = ExtResource("2_d7ouw")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e8v1c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7xrm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8214v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gufec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5d6gb")
+}],
+"loop": true,
+"name": &"projectile",
+"speed": 5.0
+}]
+
+[node name="EnemyProjectile" type="Area2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+script = ExtResource("1_pdsyp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6qai8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_e8v1c")
+animation = &"projectile"
+frame_progress = 0.0397654
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

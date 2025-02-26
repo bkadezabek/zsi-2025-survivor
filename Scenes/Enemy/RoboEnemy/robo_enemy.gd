@@ -5,7 +5,7 @@ extends Enemy
 func _ready() -> void:
 	health_component = $HealthComponent
 	velocity_component = $VelocityComponent
-	
+	setup_shooting()
 	super._ready()
 	
 	animated_sprite_2d.play("run")

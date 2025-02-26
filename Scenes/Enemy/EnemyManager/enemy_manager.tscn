@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://diiqewx8bak2h"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/EnemyManager/enemy_manager.gd" id="1_ftf57"]
+[ext_resource type="PackedScene" uid="uid://b0v5ron7kawd1" path="res://Scenes/Enemy/RoboEnemy/robo_enemy.tscn" id="2_eoig4"]
+[ext_resource type="PackedScene" uid="uid://wjl8j6rhj78g" path="res://Scenes/Enemy/FlyingRoboEnemy/flying_robo_enemy.tscn" id="3_lkrvx"]
+[ext_resource type="PackedScene" uid="uid://bad254j8ejf5d" path="res://Scenes/Enemy/TurretRoboEnemy/turret_robo_enemy.tscn" id="4_5aehv"]
+
+[node name="EnemyManager" type="Node"]
+script = ExtResource("1_ftf57")
+enemy_scenes = Array[PackedScene]([ExtResource("2_eoig4"), ExtResource("3_lkrvx"), ExtResource("4_5aehv")])
+initial_spawn_delay = 1.0
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
