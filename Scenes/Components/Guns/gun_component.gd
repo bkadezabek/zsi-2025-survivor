@@ -8,7 +8,7 @@ extends Node2D
 var current_gun_index: int = 0
 
 func _ready() -> void:
-	switch_gun(preload("res://Scene/Components/Guns/Shotgun/shotgun.tscn"))
+	switch_gun(preload("res://Scenes/Components/Guns/Shotgun/shotgun.tscn"))
 
 func _process(delta) -> void:
 	var mouse_position = get_global_mouse_position()

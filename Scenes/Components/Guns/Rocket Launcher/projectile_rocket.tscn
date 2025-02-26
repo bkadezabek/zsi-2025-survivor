@@ -1,25 +1,25 @@
 [gd_scene load_steps=9 format=3 uid="uid://bnivclt3q6302"]
 
-[ext_resource type="Script" path="res://Scene/Components/Guns/Rocket Launcher/projectile_rocket.gd" id="1_0f0v1"]
-[ext_resource type="Texture2D" uid="uid://dc50e3txsnvux" path="res://Assets/projectiles x1.png" id="2_ehbia"]
+[ext_resource type="Script" path="res://Scenes/Components/Guns/Rocket Launcher/projectile_rocket.gd" id="1_wqbjg"]
+[ext_resource type="Texture2D" uid="uid://dc50e3txsnvux" path="res://Assets/projectiles x1.png" id="2_3tgdw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sqw3h"]
 size = Vector2(18, 10)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_272pn"]
-atlas = ExtResource("2_ehbia")
+atlas = ExtResource("2_3tgdw")
 region = Rect2(0, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lr8da"]
-atlas = ExtResource("2_ehbia")
+atlas = ExtResource("2_3tgdw")
 region = Rect2(32, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mve1r"]
-atlas = ExtResource("2_ehbia")
+atlas = ExtResource("2_3tgdw")
 region = Rect2(64, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r1u0m"]
-atlas = ExtResource("2_ehbia")
+atlas = ExtResource("2_3tgdw")
 region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nk354"]
@@ -43,8 +43,12 @@ animations = [{
 }]
 
 [node name="ProjectileRocket" type="Area2D"]
+light_mask = 0
+visibility_layer = 0
 scale = Vector2(4, 4)
-script = ExtResource("1_0f0v1")
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_wqbjg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sqw3h")

@@ -1,0 +1,128 @@
+[gd_scene load_steps=19 format=3 uid="uid://wjl8j6rhj78g"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/FlyingRoboEnemy/flying_robo_enemy.gd" id="1_slfwn"]
+[ext_resource type="PackedScene" uid="uid://c5deyq4a14be5" path="res://Scenes/Components/HealthComponent/health_component.tscn" id="2_2l0qq"]
+[ext_resource type="PackedScene" uid="uid://clkiuqx8ukprm" path="res://Scenes/Components/VelocityComponent/velocity_component.tscn" id="3_828si"]
+[ext_resource type="Texture2D" uid="uid://bl23s5qcove37" path="res://Assets/enemies x1.png" id="4_7c5ua"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdjl2"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8junf"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2tcb6"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mydw"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glgqo"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u536o"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8oukr"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4btc"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pf4m"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8wj7"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyid2"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2qi4"]
+atlas = ExtResource("4_7c5ua")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34edp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdjl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8junf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2tcb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mydw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glgqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u536o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8oukr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4btc")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pf4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8wj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyid2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2qi4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2v3wc"]
+
+[node name="FlyingRoboEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "velocity_component") groups=["ENEMY"]]
+scale = Vector2(3.5, 3.5)
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_slfwn")
+health_component = NodePath("HealthComponent")
+velocity_component = NodePath("VelocityComponent")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_2l0qq")]
+
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_828si")]
+speed = 150.0
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_34edp")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2v3wc")
+
+[connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]

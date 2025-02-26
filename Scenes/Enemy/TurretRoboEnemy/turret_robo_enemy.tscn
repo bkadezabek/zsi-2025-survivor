@@ -1,0 +1,128 @@
+[gd_scene load_steps=19 format=3 uid="uid://bad254j8ejf5d"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/FlyingRoboEnemy/flying_robo_enemy.gd" id="1_dbggc"]
+[ext_resource type="PackedScene" uid="uid://c5deyq4a14be5" path="res://Scenes/Components/HealthComponent/health_component.tscn" id="2_onjsn"]
+[ext_resource type="PackedScene" uid="uid://clkiuqx8ukprm" path="res://Scenes/Components/VelocityComponent/velocity_component.tscn" id="3_jwjuo"]
+[ext_resource type="Texture2D" uid="uid://bl23s5qcove37" path="res://Assets/enemies x1.png" id="4_ohxyx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2q05k"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(0, 640, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3u1i"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(32, 640, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cd70"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(64, 640, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og04i"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(96, 640, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gviy"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(128, 640, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwkei"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(160, 640, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jchjv"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(192, 640, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5pnni"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(224, 640, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftctb"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(0, 576, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnq50"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(32, 576, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_posf0"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(64, 576, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmk3y"]
+atlas = ExtResource("4_ohxyx")
+region = Rect2(96, 576, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34edp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2q05k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3u1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cd70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og04i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6gviy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwkei")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jchjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5pnni")
+}],
+"loop": false,
+"name": &"death",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftctb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnq50")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_posf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmk3y")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2v3wc"]
+
+[node name="TurretRoboEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health_component", "velocity_component") groups=["ENEMY"]]
+scale = Vector2(3.5, 3.5)
+collision_layer = 2
+collision_mask = 6
+script = ExtResource("1_dbggc")
+health_component = NodePath("HealthComponent")
+velocity_component = NodePath("VelocityComponent")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_onjsn")]
+
+[node name="VelocityComponent" parent="." node_paths=PackedStringArray("sprite") instance=ExtResource("3_jwjuo")]
+speed = 2.08165e-12
+sprite = NodePath("../AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_34edp")
+animation = &"death"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2v3wc")
+
+[connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]
