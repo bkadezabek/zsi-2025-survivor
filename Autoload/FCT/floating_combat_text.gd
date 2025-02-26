@@ -4,8 +4,8 @@ extends Node2D
 
 @export var lifetime: float = 1.0
 @export var float_distance: float = 30.0
-@export var position_variance: float = 15.0
-@export var angle_variance: float = 30.0
+@export var position_variance: float = 30.0
+@export var angle_variance: float = 90.0
 
 func setup(number: int, start_position: Vector2):
 	position = start_position + Vector2(

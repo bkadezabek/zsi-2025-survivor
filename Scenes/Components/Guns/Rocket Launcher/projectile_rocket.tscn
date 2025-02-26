@@ -43,8 +43,6 @@ animations = [{
 }]
 
 [node name="ProjectileRocket" type="Area2D"]
-light_mask = 0
-visibility_layer = 0
 scale = Vector2(4, 4)
 collision_layer = 4
 collision_mask = 2
@@ -56,6 +54,7 @@ shape = SubResource("RectangleShape2D_sqw3h")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nk354")
 animation = &"rocket"
-frame_progress = 0.265258
+frame = 1
+frame_progress = 0.626122
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
