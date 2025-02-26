@@ -11,6 +11,7 @@ func _ready():
 
 func take_damage(amount: float) -> void:
 	current_health -= amount
+	FCT.create_fct(amount, get_parent().global_position)
 	if current_health <= 0:
 		die()
 
